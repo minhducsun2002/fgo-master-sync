@@ -16,6 +16,9 @@ readdirSync('./dataset').forEach(variation => {
         const cmd = `mongoimport --host ${HOST} --port 27017 --username ${USER} --password ${PASSWORD} --ssl --collection ${
             collectionName
         } --file ${fullPath} --jsonArray --drop --authenticationDatabase admin --db ${variation}`
-        execSync(cmd, { stdio: 'inherit' })
+        try { execSync(cmd, { stdio: 'inherit' }) }
+        catch {
+            console.log(`Failed: ${chalk.green(fullPath)} to ${variation}.${chalk.yellow(collectionName)}`)
+        }
     })
 })
