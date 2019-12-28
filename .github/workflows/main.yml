@@ -1,0 +1,30 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@2.0.0
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: wget https://repo.mongodb.org/apt/ubuntu/dists/bionic/mongodb-org/4.2/multiverse/binary-amd64/mongodb-org-tools_4.2.2_amd64.deb 
+    - run: sudo dpkg -i mongodb-org-tools_4.2.2_amd64.deb
+    - run: npm install
+    - run: npm start
+      env:
+        HOST: ${{ secrets.HOST }}
+        USER: ${{ secrets.USER }}
+        PASSWORD: ${{ secrets.PASSWORD }}
