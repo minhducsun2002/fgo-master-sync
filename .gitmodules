@@ -1,0 +1,8 @@
+[submodule "dataset/NA"]
+	path = dataset/NA
+	url = https://github.com/atlasacademy/fgo-game-data
+	branch = NA
+[submodule "dataset/JP"]
+	path = dataset/JP
+	url = https://github.com/atlasacademy/fgo-game-data
+	branch = JP
