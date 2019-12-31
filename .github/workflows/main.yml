@@ -13,15 +13,29 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@2.0.0
+    - name: Checkout JP dataset
+      uses: actions/checkout@v2
+      with:
+        repository: sadisticsolution/fgo-game-data
+        ref: JP
+        path: 'dataset/JP'
+        token: ${{ secrets.TOKEN }}
+    - name: Checkout NA dataset
+      uses: actions/checkout@v2
+      with:
+        repository: sadisticsolution/fgo-game-data
+        ref: NA
+        path: 'dataset/NA'
+        token: ${{ secrets.TOKEN }}
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: wget https://repo.mongodb.org/apt/ubuntu/dists/bionic/mongodb-org/4.2/multiverse/binary-amd64/mongodb-org-tools_4.2.2_amd64.deb 
-    - run: sudo dpkg -i mongodb-org-tools_4.2.2_amd64.deb
+    - name: Download MongoDB tools
+      run: wget https://repo.mongodb.org/apt/ubuntu/dists/bionic/mongodb-org/4.2/multiverse/binary-amd64/mongodb-org-tools_4.2.2_amd64.deb 
+    - name: Install MongoDB tools
+      run: sudo dpkg -i mongodb-org-tools_4.2.2_amd64.deb
     - run: npm install
     - run: npm start
       env:
