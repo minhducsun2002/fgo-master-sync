@@ -13,7 +13,7 @@ do
         then
             mongoimport --host "$HOST" --port 27017 --username "$USER" --password "$PASSWORD" \
                 --ssl --file "$FILE" --jsonArray --drop --authenticationDatabase admin --db "$LOCALE" \
-                --collection "$(basename $k .json)";
+                --collection "$(basename $k .json)" & 
         fi
     done
 done
