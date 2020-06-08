@@ -27,17 +27,7 @@ jobs:
         ref: NA
         path: 'dataset/NA'
         token: ${{ secrets.TOKEN }}
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Download MongoDB tools
-      run: wget https://repo.mongodb.org/apt/ubuntu/dists/bionic/mongodb-org/4.2/multiverse/binary-amd64/mongodb-org-tools_4.2.2_amd64.deb 
-    - name: Install MongoDB tools
-      run: sudo dpkg -i mongodb-org-tools_4.2.2_amd64.deb
-    - run: npm install
-    - run: npm start
+    - run: env > env && docker build -t run . && docker run --env-file env -t run
       env:
         HOST: ${{ secrets.HOST }}
         USER: ${{ secrets.USER }}
