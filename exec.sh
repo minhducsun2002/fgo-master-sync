@@ -11,10 +11,11 @@ do
         # check for zero-length JSONs
         if [ ! $(jq length "$FILE") -eq 0 ];
         then
-            mongoimport --host "$HOST" --port 27017 --username "$USER" --password "$PASSWORD" \
-                --ssl --file "$FILE" --jsonArray --drop --authenticationDatabase admin --db "$LOCALE" \
-                --collection "$(basename $k .json)" & 
-        fi
+            echo mongoimport --host \"$HOST\" --port 27017 --username \"$USER\" --password \"$PASSWORD\" \
+                --ssl --file \"$FILE\" --jsonArray --drop --authenticationDatabase admin --db \"$LOCALE\" \
+                --collection \"$(basename $k .json)\" >> shell
+        fi;
+        cat shell | parallel --jobs 4 
     done
 done
 
