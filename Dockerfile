@@ -2,8 +2,8 @@ FROM leafney/alpine-mongo-tools
 
 RUN apk add --no-cache jq parallel
 WORKDIR /app
-COPY dataset/NA mst/NA
-COPY dataset/JP mst/JP
+COPY dataset/NA/master mst/NA/master
+COPY dataset/JP/master mst/JP/master
 
 COPY exec.sh exec.sh
 
