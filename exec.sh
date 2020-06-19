@@ -15,7 +15,7 @@ do
                 --ssl --file \"$FILE\" --jsonArray --drop --authenticationDatabase admin --db \"$LOCALE\" \
                 --collection \"$(basename $k .json)\" >> shell
         fi;
-        cat shell | parallel --jobs 4 
     done
 done
 
+cat shell | parallel --jobs 4 
