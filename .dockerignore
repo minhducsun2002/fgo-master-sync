@@ -1,0 +1,4 @@
+*
+!exec.sh
+!/dataset/NA/master/*.json
+!/dataset/JP/master/*.json
