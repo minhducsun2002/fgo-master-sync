@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '0 */12 * * *'
   push:
+  repository_dispatch:
 
 jobs:
   build:
