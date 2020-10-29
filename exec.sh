@@ -4,6 +4,8 @@ for i in $(ls)
 do
     # for every locale
     LOCALE="$i"
+    rm -rf "./$i/master/assetbundle.json"
+    rm -rf "./$i/master/webview.json"
     for k in $(ls "./$i/master")
     do
         # push every file
