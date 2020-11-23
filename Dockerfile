@@ -6,5 +6,5 @@ COPY dataset/NA/master mst/NA/master
 COPY dataset/JP/master mst/JP/master
 
 COPY exec.sh exec.sh
-
+ENV SSL --ssl
 CMD ./exec.sh

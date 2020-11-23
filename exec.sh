@@ -14,7 +14,7 @@ do
         if [ ! $(jq length "$FILE") -eq 0 ];
         then
             echo mongoimport --host \"$HOST\" --port 27017 --username \"$USER\" --password \"$PASSWORD\" \
-                --ssl --file \"$FILE\" --jsonArray --drop --authenticationDatabase admin --db \"$LOCALE\" \
+                "$SSL" --file \"$FILE\" --jsonArray --drop --authenticationDatabase admin --db \"$LOCALE\" \
                 --collection \"$(basename $k .json)\" >> shell
         fi;
     done
