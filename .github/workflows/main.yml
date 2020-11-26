@@ -5,6 +5,7 @@ on:
     - cron: '0 */2 * * *'
   push:
   repository_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
