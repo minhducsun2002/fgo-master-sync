@@ -14,20 +14,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Checkout JP dataset
+    - name: Checkout datasets
       uses: actions/checkout@v2
       with:
-        repository: sadisticsolution/fgo-game-data
-        ref: JP
-        path: 'dataset/JP'
-        token: ${{ secrets.TOKEN }}
-    - name: Checkout NA dataset
-      uses: actions/checkout@v2
-      with:
-        repository: sadisticsolution/fgo-game-data
-        ref: NA
-        path: 'dataset/NA'
-        token: ${{ secrets.TOKEN }}
+        repository: fzfalzar/fgodata
+        path: '_tmp'
+    - name: Prepare datasets
+      run: |
+        _ROOT=$(pwd)
+
+        mkdir -p dataset/JP/master;
+        mkdir -p dataset/NA/master;
+
+        cp _tmp/JP_tables/**/*.json dataset/JP/master;
+        cp _tmp/US_tables/**/*.json dataset/NA/master;
+
     - run: env > env && docker build -t run . && docker run --env-file env -t run
       env:
         HOST: ${{ secrets.HOST }}
