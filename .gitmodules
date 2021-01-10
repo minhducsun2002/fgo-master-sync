@@ -1,8 +1,0 @@
-[submodule "dataset/NA"]
-	path = dataset/NA
-	url = ../../sadisticsolution/fgo-game-data.git
-	branch = NA
-[submodule "dataset/JP"]
-	path = dataset/JP
-	url = ../../sadisticsolution/fgo-game-data.git
-	branch = JP
